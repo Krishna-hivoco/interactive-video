@@ -781,7 +781,7 @@ export default function TaxFilePage() {
 
               {/* Image */}
               <Image
-                src="/bb.png"
+                src="/BB.png"
                 alt="Mountain landscape"
                 fill
                 className="object-fill rounded-lg"
