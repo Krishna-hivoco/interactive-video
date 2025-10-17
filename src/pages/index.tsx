@@ -38,8 +38,8 @@ const quizData: Question[] = [
     question_id: 2,
     question: "How many teaspoons of sugar should we have daily?",
     options: [
-      { label: "A", text: "2–3 teaspoons", isCorrect: false },
-      { label: "B", text: "4–5 teaspoons", isCorrect: true },
+      { label: "A", text: "2-3 teaspoons", isCorrect: false },
+      { label: "B", text: "4-5 teaspoons", isCorrect: true },
 
     ],
     duration: "27 sec"
@@ -48,8 +48,8 @@ const quizData: Question[] = [
     question_id: 3,
     question: "What is a healthy amount of oil to use each day?",
     options: [
-      { label: "A", text: "5–6 teaspoons", isCorrect: true },
-      { label: "B", text: "10–12 teaspoons", isCorrect: false },
+      { label: "A", text: "5-6 teaspoons", isCorrect: true },
+      { label: "B", text: "10-12 teaspoons", isCorrect: false },
 
     ],
     duration: "34 sec"
@@ -151,13 +151,38 @@ export default function TaxFilePage() {
     setShowVideo(true);
   };
 
+  // const handleAnswerSelect = (label: string): void => {
+  //   setSelectedAnswer(label);
+
+  //   // Check if answer is correct and show confetti
+  //   const selectedOption = currentQuestion.options.find(opt => opt.label === label);
+  //   if (selectedOption?.isCorrect) {
+  //     setShowConfetti(true);
+  //   }
+
+  //   // Wait 400ms after selecting answer, then automatically continue
+  //   setTimeout(() => {
+  //     handleNextQuestion();
+  //   }, 2000);
+  // };
+
   const handleAnswerSelect = (label: string): void => {
+    // Prevent selecting another answer if one is already selected
+    if (selectedAnswer !== null) return;
+    
     setSelectedAnswer(label);
 
     // Check if answer is correct and show confetti
     const selectedOption = currentQuestion.options.find(opt => opt.label === label);
     if (selectedOption?.isCorrect) {
       setShowConfetti(true);
+      // Play correct answer sound
+      const correctAudio = new Audio('/music/correct.mp3');
+      correctAudio.play().catch(err => console.log('Audio play failed:', err));
+    } else {
+      // Play wrong answer sound
+      const wrongAudio = new Audio('/music/wrong.wav');
+      wrongAudio.play().catch(err => console.log('Audio play failed:', err));
     }
 
     // Wait 400ms after selecting answer, then automatically continue
