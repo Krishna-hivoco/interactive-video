@@ -59,7 +59,7 @@ const quizData: Question[] = [
     question: "What should fill half of your thali (plate)?",
     options: [
 
-      { label: "A", text: "Fruits and vegetables", isCorrect: true },
+      { label: "A", text: "Fruits & vegetables", isCorrect: true },
 
       { label: "B", text: "Chips", isCorrect: false }
     ],
@@ -167,9 +167,6 @@ export default function TaxFilePage() {
   // };
 
   const handleAnswerSelect = (label: string): void => {
-    // Prevent selecting another answer if one is already selected
-    if (selectedAnswer !== null) return;
-    
     setSelectedAnswer(label);
 
     // Check if answer is correct and show confetti
@@ -252,13 +249,13 @@ export default function TaxFilePage() {
       </div>
 
       {/* Language Selection Section */}
-      <div className={`absolute inset-0 flex flex-col gap-8 items-center justify-center z-10 transition-opacity duration-500 ${showLanguage && !showVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      <div className={`absolute inset-0 flex flex-col  gap-8 items-center justify-center z-10 transition-opacity duration-500 ${showLanguage && !showVideo ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
-        <h3 className={`text-4xl md:text-5xl font-normal uppercase ${myFont.className}`}>choose language</h3>
+        <h3 className={`text-4xl md:text-5xl font-normal uppercase text-white ${myFont.className}`}>choose language</h3>
         <div className='flex gap-3 text-3xl font-normal'>
           <div
             onClick={() => handleLanguageSelect('hindi')}
-            className='flex flex-col justify-center backdrop-blur-xs items-center gap-1 w-40 h-40 md:w-44 md:h-44 rounded-2xl bg-[#00000080] cursor-pointer hover:bg-[#00000099] transition-colors'
+            className='flex flex-col justify-center text-white backdrop-blur-xs items-center gap-1 w-40 h-40 md:w-44 md:h-44 rounded-2xl bg-[#00000080] cursor-pointer hover:bg-[#00000099] transition-colors'
           >
             <strong className='text-3xl md:text-4xl font-normal'>
               अ
@@ -269,7 +266,7 @@ export default function TaxFilePage() {
           </div>
           <div
             onClick={() => handleLanguageSelect('english')}
-            className='flex flex-col justify-center backdrop-blur-xs items-center gap-1 w-40 h-40 md:w-44 md:h-44 rounded-2xl bg-[#00000080] cursor-pointer hover:bg-[#00000099] transition-colors'
+            className='flex flex-col justify-center backdrop-blur-xs text-white items-center gap-1 w-40 h-40 md:w-44 md:h-44 rounded-2xl bg-[#00000080] cursor-pointer hover:bg-[#00000099] transition-colors'
           >
             <strong className='text-3xl md:text-4xl font-normal'>
               Aa
@@ -370,7 +367,7 @@ export default function TaxFilePage() {
         <div className={`absolute bottom-0 left-0 right-0 h-screen z-30 bg-black/80 backdrop-blur-sm transition-all duration-[600ms] ease-in ${showQuiz ? 'translate-y-0' : 'translate-y-full'
           }`}>
           
-          <div className=' max-w-lg mx-auto py-20 text-center relative'>
+          <div className=' max-w-lg mx-auto py-10   text-center flex items-center justify-center flex-col h-full relative'>
             <div className='flex items-center justify-center'>
               <div className='flex flex-col'>
                 <small className={`text-5xl ${myFont.className}`}>Quiz</small>
@@ -378,7 +375,7 @@ export default function TaxFilePage() {
               </div>
               <Image width={103} height={110} src={"/bulb.svg"} alt="bulb" />
             </div>
-            <div className="relative w-full  h-full aspect-video ">
+            <div className="relative w-full  h-[230px] aspect-video ">
               {/* Confetti GIF - Left Side of bb.png */}
               {showConfetti && (
                 <div className="absolute -left-48 top-1/2 -translate-y-1/2 w-96 h-96 z-40 pointer-events-none">
@@ -423,10 +420,10 @@ export default function TaxFilePage() {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col text-center gap-[10px]  justify-center items-center'>
+            <div className='flex flex-col text-center gap-[10px] text-start  justify-center items-center'>
               {currentQuestion.options.map((option) => (
-                <div key={option.label} className={`w-[252] h-[84px]  rounded-xl bg-white `}>
-                  <div onClick={() => handleAnswerSelect(option.label)} className={`w-[252] h-[73px] text-2xl ${myFont.className} rounded-xl  text-white flex justify-start items-center px-4 cursor-pointer ${selectedAnswer === option.label
+                <div key={option.label} className={`w-[252] h-[73px]  rounded-xl bg-white `}>
+                  <div onClick={() => handleAnswerSelect(option.label)} className={`w-[252] h-[67px] text-xl ${myFont.className} rounded-xl  text-white flex justify-start items-center px-4 cursor-pointer ${selectedAnswer === option.label
                     ? option.isCorrect
                       ? 'bg-[#76df57] '
                       : 'bg-[#ff5e5e]'
